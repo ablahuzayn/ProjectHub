@@ -11,21 +11,32 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background: linear-gradient(to right, #c3ccff, #fffed6);
             font-family: 'Pacifico', cursive;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
         }
 
         .box {
             border: 3px solid rgb(245, 134, 171);
             border-radius: 4%;
-            padding: 0px 0px 40px 0px;
-            width: 600px;
-            display: block;
-            margin: 60px auto;
-            animation: bounceIn 1s ease;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
             background-color: #fff0f5;
             box-shadow: 0 0 20px rgba(255, 182, 193, 0.6);
+            animation: bounceIn 1s ease;
         }
 
         @keyframes bounceIn {
@@ -35,8 +46,8 @@
         }
 
         h1 {
-            text-align: center;
             color: palevioletred;
+            margin-bottom: 20px;
             animation: slideDown 1s ease;
         }
 
@@ -46,8 +57,7 @@
         }
 
         img {
-            margin: auto;
-            display: block;
+            width: 100%;
             border-radius: 4%;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
@@ -60,9 +70,8 @@
         button {
             color: white;
             background-color: palevioletred;
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
+            margin-top: 25px;
+            padding: 10px 25px;
             font-size: 18px;
             border: none;
             border-radius: 8px;
@@ -80,20 +89,25 @@
 
     <div class="box">
         <h1>Birthday 21st Bday 🎉</h1>
-        <img src="./nooraaa.jpg" alt="bday card" height="400px" width="320px">
+        <img src="./nooraaa.jpg" alt="bday card">
     </div>
 
     <button onclick="wish()">Click Me</button>
 
-    <!-- Birthday Music -->
-    <audio id="bday-audio" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+    <!-- Cute Birthday Song (Cuppy Cake) -->
+    <audio id="bday-audio" preload="auto" src="https://downloadwap.com/content3/mp3tones/rtones/new/sound-fx/youre_my_honey_bunch_the_cuppycake_song-6878.mp3"></audio>
 
     <script>
         function wish() {
-            alert("Happy Birthday Dear! 🎉🎂");
+            alert("Happy Birthday Nooraaa! 🎉🎂");
 
-            // Play birthday music
-            document.getElementById("bday-audio").play();
+            // Play music
+            const audio = document.getElementById("bday-audio");
+            audio.currentTime = 0;
+            audio.play().catch((err) => {
+                console.log("Audio play failed:", err);
+                alert("Tap again to allow audio!");
+            });
 
             // Fire confetti
             confetti({
